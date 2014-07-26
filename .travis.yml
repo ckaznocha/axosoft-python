@@ -1,0 +1,25 @@
+language: python
+python:
+- '2.7'
+- '3.2'
+- '3.3'
+env:
+  global:
+  - TEST_ENV=Travis-CI
+  - secure: IPqwBgVjQbAczNs2IkkSeZv2+dgaDBaSRGNUeiumEq7cibOthcOVLafG9ajC40EbPgE828dxtr+UJ+JYJVfK1pj00cv/SBDuBzMRWn2pDCNp5l45WcXjf9ouGymJ1e55kgLiy6Vgnb/NKb41A1HwV+iScJ5ZLqdCUbukUA4G5bI=
+  - secure: W1ggURZYJR0XeZTmIQdFpqIkTizjEg97en71sKbnGv7PAmoEkANX5sNJVwBPAwPwl0YLlUaiQ6hQVPMBTIHlN3bYXut6O1whIkkPYkhVZw+4L3k1JEpES6enj4PPAqePt+MSJfDLCNixHglSeP+QOafV37Llc33gzfgXvJ92d/U=
+  - secure: YzNtOf3h+wG/qhDnXZijkuakqeY4IEnAXLvVMu23z/roCkEp0mxHG8d+kuHr2rU1MnMQVCBdoVBrSqlG/Jzjs0Eh3gJAOvivWIV7zXA3fPCUzyfXIZa7kd0bnnijQUBz/QootzW1kLvvVpe8JY14bRVPTUDfVcS8ZVlIUyBB73s=
+  - secure: Z8xS1IGAn5Fk+D75Fv8csTakWuYUAyJJ2mapU1relhPiG++3g7mUuDoZhnxr0LkofaMG2dvk7toqjiFHEQTNEGMYCM4CZK7TFGWzUxEBAM3ZoJSNK8thggK2B1P1JE079DvzAsDPjA3/KgdhWqsiftftlTgukDXyFSVoWImSQqo=
+install:
+- pip install .
+- pip install flake8
+- pip install pylint
+- pip install pep257
+- pip install coveralls
+script:
+- flake8 ./axosoft_api
+- pep257 ./axosoft_api
+- pylint ./axosoft_api
+- nosetests --verbose --with-coverage --cover-package=axosoft_api
+after_success:
+- coveralls
