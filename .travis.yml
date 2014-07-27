@@ -6,10 +6,10 @@ python:
 env:
   global:
   - TEST_ENV=Travis-CI
-  - secure: IPqwBgVjQbAczNs2IkkSeZv2+dgaDBaSRGNUeiumEq7cibOthcOVLafG9ajC40EbPgE828dxtr+UJ+JYJVfK1pj00cv/SBDuBzMRWn2pDCNp5l45WcXjf9ouGymJ1e55kgLiy6Vgnb/NKb41A1HwV+iScJ5ZLqdCUbukUA4G5bI=
-  - secure: W1ggURZYJR0XeZTmIQdFpqIkTizjEg97en71sKbnGv7PAmoEkANX5sNJVwBPAwPwl0YLlUaiQ6hQVPMBTIHlN3bYXut6O1whIkkPYkhVZw+4L3k1JEpES6enj4PPAqePt+MSJfDLCNixHglSeP+QOafV37Llc33gzfgXvJ92d/U=
-  - secure: YzNtOf3h+wG/qhDnXZijkuakqeY4IEnAXLvVMu23z/roCkEp0mxHG8d+kuHr2rU1MnMQVCBdoVBrSqlG/Jzjs0Eh3gJAOvivWIV7zXA3fPCUzyfXIZa7kd0bnnijQUBz/QootzW1kLvvVpe8JY14bRVPTUDfVcS8ZVlIUyBB73s=
-  - secure: Z8xS1IGAn5Fk+D75Fv8csTakWuYUAyJJ2mapU1relhPiG++3g7mUuDoZhnxr0LkofaMG2dvk7toqjiFHEQTNEGMYCM4CZK7TFGWzUxEBAM3ZoJSNK8thggK2B1P1JE079DvzAsDPjA3/KgdhWqsiftftlTgukDXyFSVoWImSQqo=
+  - secure: s5DrnETpuQfrDk24B9HSJh27PAziMUStFxQQP8tNnGvVSZc2/KjrrxfIXf8+/PaI0pE1UIsRW218oZvuJc4pWyMg6l+FI+Kie/GSlnl28a2SeXonskGkX4PIsf1eAEWgETuwwnyY8qAV8ghz/P5Q2BlQGS9wNqv00L3zAd1utV4=
+  - secure: HoEzSlA7VX+ANJJyNBbexotMWYyL2o5yDV3wRq5EdWIKm1g+XBTduhT9yDCv2/pyTRsBSSVq4SiIxwiyt8DVAajZQ3EIoAIpMGC6EUMpucfabxIhj8duW/7tt8+8MyCii0B1Wc6HSHi3LsXAvUSd/LF8u2VYafbNQrcxAD3rYgw=
+  - secure: Oihhvk59MkpxC9YedtlpQ3oczNbA1KDvF8tW0Ny5ZLyvJ4CThw7ORs5FarA3DIXJclF2CO78s049v2/R3Ege0N3DZro5aIuEIxhisQbwQF24s9ZE9A+4NWHUn/Re3+oy7MS2dC+X2tohpB1LBkxK2+epI+5h+6aDDVWtFQQ5rzg=
+  - secure: E9IRnePrOmxLZDDU06cHyaJm/uiWdzeXESMbqv1fAS16GeaXAhRb5BlAHKmPdnwQqLRkzTH5nD66RwiWyGq3RnjPfSoX26ym/SY/nz9AQtrp3jyQ20hBkv+ZNDxJlabQgD6qAewy8qLEvL1byh5Ea31FoIuiCheLh1qzkW1CBLI=
 install:
 - pip install .
 - pip install flake8

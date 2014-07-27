@@ -6,7 +6,7 @@ Hook up to axosoft
 
 import requests
 import json
-from .validate import validate_endpoint, \
+from .validate import validate_address, \
     validate_required_params, \
     validate_response
 
@@ -74,14 +74,14 @@ class Axosoft(object):
                 self.__token = auth['access_token']
                 return self.__token
 
-    def get(self, endpoint, resourse_id=None, payload=None):
+    def get(self, address, resourse_id=None, payload=None):
         """ Get a resource. """
-        resource = validate_endpoint(endpoint, 'GET')
+        resource = validate_address(address, 'GET')
         uri = '{0}/v{1}/{2}'\
             .format(
                 self.__base_url,
                 self.__api_version,
-                resource['endpoint']
+                resource['address']
             )
 
         if resourse_id is not None:
@@ -101,17 +101,17 @@ class Axosoft(object):
 
         return response["data"]
 
-    def create(self, endpoint, payload):
+    def create(self, address, payload):
         """ Create a resource. """
-        endpoint = validate_endpoint(endpoint, 'POST')
+        resource = validate_address(address, 'POST')
 
-        validate_required_params(endpoint, payload)
+        validate_required_params(resource, payload)
 
         uri = '{0}/v{1}/{2}'\
             .format(
                 self.__base_url,
                 self.__api_version,
-                endpoint['endpoint']
+                resource['address']
             )
         headers = {
             'Content-type': 'application/json; charset=utf-8',
@@ -128,15 +128,15 @@ class Axosoft(object):
         data = response.json()
         return data['data']
 
-    def update(self, endpoint, resourse_id, payload):
-        """ Create a resource. """
-        endpoint = validate_endpoint(endpoint, 'POST')
+    def update(self, address, resourse_id, payload):
+        """ Update a resource. """
+        resource = validate_address(address, 'POST')
 
         uri = '{0}/v{1}/{2}/{3}'\
             .format(
                 self.__base_url,
                 self.__api_version,
-                endpoint['endpoint'],
+                resource['address'],
                 resourse_id
             )
         headers = {
@@ -154,15 +154,15 @@ class Axosoft(object):
         data = response.json()
         return data['data']
 
-    def delete(self, endpoint, resourse_id):
+    def delete(self, address, resourse_id):
         """ Delete a resource. """
-        endpoint = validate_endpoint(endpoint, 'DELETE')
+        resource = validate_address(address, 'DELETE')
 
         uri = '{0}/v{1}/{2}/{3}'\
             .format(
                 self.__base_url,
                 self.__api_version,
-                endpoint['endpoint'],
+                resource['address'],
                 resourse_id
             )
 
