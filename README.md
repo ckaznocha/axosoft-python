@@ -47,7 +47,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
 
 1. Start interacting with your Axosoft API resources
     ```python
-        # These examples arbitrarily use the release endpoint
+        # These examples arbitrarily use the release resource
 
         """
         Create a new release.
@@ -86,6 +86,8 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
 
     ````
 
+For info on using the various resources of the API see Axosoft's documentation:
+http://developer.axosoft.com/api
 
 ##To Do
 - Implement code grant type authentication.
@@ -99,4 +101,4 @@ See the `CONTRIBUTING` file.
 ##License
 See the `LICENSE` file.
 
-This project and its contributers are in no way affiliated with Axosoft. Axosoft and the Axosoft API are the copyright of Axosoft, LLC
+This project and its contributers are in no way affiliated with Axosoft. Axosoft is the trademark of Axosoft, LLC

@@ -6,14 +6,14 @@ Some functions to validate methods.
 from .config import RESOURCES
 
 
-def validate_endpoint(endpoint, verb):
-    """ Test if endpoint is valid. """
-    endpoint_available = (endpoint in RESOURCES)
+def validate_address(address, verb):
+    """ Test if address is valid. """
+    address_available = (address in RESOURCES)
 
-    if endpoint_available:
-        resource = RESOURCES[endpoint]
+    if address_available:
+        resource = RESOURCES[address]
     else:
-        raise LookupError('Endpoint not found')
+        raise LookupError('address not found')
 
     can_use_verb = (verb in resource['verbs'])
 
