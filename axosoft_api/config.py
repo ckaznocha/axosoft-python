@@ -1,105 +1,105 @@
 """
-Configure Endpoints.
+Configure addresss.
 
-Contains available endpoint info.
+Contains available address info.
 """
 
 RESOURCES = {
     "attachments": {
-        "endpoint": "attachments",
+        "address": "attachments",
         "verbs": ["GET", "POST", "DELETE"]
     },
     "contacts": {
-        "endpoint": "contacts",
+        "address": "contacts",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["customer", "first_name", "last_name"]
     },
     "customers": {
-        "endpoint": "customers",
+        "address": "customers",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["company_name"]
     },
     "defects": {
-        "endpoint": "defects",
+        "address": "defects",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["item"]
     },
     "features": {
-        "endpoint": "features",
+        "address": "features",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["item"]
     },
     "tasks": {
-        "endpoint": "tasks",
+        "address": "tasks",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["item"]
     },
     "incidents": {
-        "endpoint": "incidents",
+        "address": "incidents",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["item"]
     },
     "emails": {
-        "endpoint": "email",
+        "address": "email",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["subject", "body", "to", "from", "email_type", "item"]
     },
     "fields": {
-        "endpoint": "fields",
+        "address": "fields",
         "verbs": ["GET"],
         "required": []
     },
     "itme_relations": {
-        "endpoint": "item_relations",
+        "address": "item_relations",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["relation_type", "parent_item", "child_item"]
     },
     "me": {
-        "endpoint": "me",
+        "address": "me",
         "verbs": ["GET"],
         "required": []
     },
     "picklists": {
-        "endpoint": "picklists",
+        "address": "picklists",
         "verbs": ["GET", "POST", "DELETE"],
         "required": []
     },
     "projects": {
-        "endpoint": "projects",
+        "address": "projects",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["name"]
     },
     "releases": {
-        "endpoint": "releases",
+        "address": "releases",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["name", "release_type"]
     },
     "security_roles": {
-        "endpoint": "security_roles",
+        "address": "security_roles",
         "verbs": ["GET"]
     },
     "settings": {
-        "endpoint": "settings",
+        "address": "settings",
         "verbs": ["GET"],
         "required": []
     },
     "users": {
-        "endpoint": "users",
+        "address": "users",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["first_name", "last_name", "security_roles"]
     },
     "work_logs": {
-        "endpoint": "work_logs",
+        "address": "work_logs",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["user", "work_done", "item", "date_time"]
     },
     "workflow_steps": {
-        "endpoint": "workflow_steps",
+        "address": "workflow_steps",
         "verbs": ["GET"],
         "required": []
     },
     "workflows": {
-        "endpoint": "workflows",
+        "address": "workflows",
         "verbs": ["GET"],
         "required": []
     },
