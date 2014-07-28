@@ -1,7 +1,7 @@
 axosoft-python
 ================================
-[![Build Status](http://img.shields.io/travis/ckaznocha/axosoft-python.svg?style=flat)](https://travis-ci.org/ckaznocha/axosoft-python)
-[![Coverage Status](https://img.shields.io/coveralls/ckaznocha/axosoft-python.svg?style=flat)](https://coveralls.io/r/ckaznocha/axosoft-python)
+[![Build Status](http://img.shields.io/travis/ckaznocha/axosoft-python.svg?style=flat)](https://travis-ci.org/ckaznocha/axosoft-python?branch=master)
+[![Coverage Status](https://img.shields.io/coveralls/ckaznocha/axosoft-python.svg?style=flat)](https://coveralls.io/r/ckaznocha/axosoft-python?branch=master)
 [![Release](http://img.shields.io/github/release/ckaznocha/axosoft-python.svg?style=flat)](https://github.com/ckaznocha/axosoft-python/releases/latest)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](http://ckaznocha.mit-license.org)
 
@@ -18,9 +18,9 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
     The constructor accepts 4 arguments
     1. The client ID provided to you by Axosoft
     1. The client secret provide to you by Axosoft
-    1. The domain you use to access Axosoft with out the protocol
-        - i.e. if your domain is `https://foo.axosoft.com` you would use `foo.axosoft.com`
-    1. Optionally a token form a previous session if you wont need to authenticate again
+    1. The domain you use to access Axosoft without the protocol.
+        i.e. If your domain is `https://foo.axosoft.com` you would use `foo.axosoft.com`
+    1. Optionally, a token from a previous session
     ```python
     axosoft_client = Axosoft(
             'Your client ID',
@@ -39,7 +39,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         )
     ```
 
-    If you need to confirm that the your are successfully authenticated you may use the `is_authenticated` method
+    If you need to confirm that you're successfully authenticated, you may use the `is_authenticated` method
     ```python
         if axosoft_client.is_authenticated:
             pass
@@ -52,7 +52,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         """
         Create a new release.
 
-        The first argument is the resource type your creating
+        The first argument is the resource type you're creating
         The second argument is the payload which should be a dictionary containing at minimum the required fields for the resource type
         """
         r = axosoft_client.create('releases', payload={'name': 'testRelease', 'release_type': {'id': 1}})
@@ -61,7 +61,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         Get the content of a release
 
         The first argument is the resource type you want to get
-        The second argument is optionally the id of a specific resource
+        The second argument is optionally the ID of a specific resource
         The third argument is optionally a dictionary of parameters
         """
         r = axosoft_client.get('releases', r['id'])
@@ -70,8 +70,8 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         Update a release
 
         The first argument is the resource type you want to update
-        The second argument is the id of the resource you are updating
-        The third arguments is a dictionary containing all the fields of you resource
+        The second argument is the ID of the resource you are updating
+        The third arguments is a dictionary containing all the fields of your resource
         """
         r = axosoft_client.update('releases', r['id'], payload={'name': 'testRelease', 'release_type': {'id': 1}})
         
@@ -79,7 +79,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         Delete a release
 
         The first argument is the resource type you want to delete
-        The second argument is the id of the resource you want to delete
+        The second argument is the ID of the resource you want to delete
         Returns true if the delete was successful
         """
         r = self.axosoft_client.delete('releases', r['id'])
@@ -91,7 +91,7 @@ http://developer.axosoft.com/api
 
 ##To Do
 - Implement code grant type authentication.
-- Figure out a nice way child resources.
+- Figure out an elegent way to access a resource's children.
     - e.g. `/features/{id}/emails`
 - Handle binary attachments.
 
