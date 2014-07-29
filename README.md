@@ -1,9 +1,9 @@
 axosoft-python
 ================================
-[![Build Status](http://img.shields.io/travis/ckaznocha/axosoft-python.svg?style=flat)](https://travis-ci.org/ckaznocha/axosoft-python?branch=master)
-[![Coverage Status](https://img.shields.io/coveralls/ckaznocha/axosoft-python.svg?style=flat)](https://coveralls.io/r/ckaznocha/axosoft-python?branch=master)
-[![Release](http://img.shields.io/github/release/ckaznocha/axosoft-python.svg?style=flat)](https://github.com/ckaznocha/axosoft-python/releases/latest)
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat)](http://ckaznocha.mit-license.org)
+[![Build Status](https://travis-ci.org/ckaznocha/axosoft-python.svg?branch=master)](https://travis-ci.org/ckaznocha/axosoft-python)
+[![Coverage Status](https://img.shields.io/coveralls/ckaznocha/axosoft-python.svg)](https://coveralls.io/r/ckaznocha/axosoft-python?branch=master)
+[![Code Health](https://landscape.io/github/ckaznocha/axosoft-python/master/landscape.png)](https://landscape.io/github/ckaznocha/axosoft-python/master)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://ckaznocha.mit-license.org)
 
 An unofficial Python module for the Axosoft (formerly OnTime) API.
 
