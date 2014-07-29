@@ -1,4 +1,5 @@
 #!/user/bin/env python
+""" axosoft_api Module. """
 from setuptools import setup, find_packages
 
 setup(
