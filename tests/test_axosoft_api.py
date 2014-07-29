@@ -38,7 +38,7 @@ class TestClientAuthentication(unittest.TestCase):
             'sublime-axosoft.axosoft.com'
         )
 
-    def test_auth(self):
+    def test_password_auth(self):
         token = self.axosoft_client.authenticate_by_password(
             axosoft_user,
             axosoft_password
@@ -53,6 +53,36 @@ class TestClientAuthentication(unittest.TestCase):
         self.assertIsNotNone(second_token)
         r = self.axosoft_client.get('me')
         self.assertEquals(axosoft_user, r['email'])
+        logged_out = self.axosoft_client.log_out()
+        self.assertTrue(logged_out)
+
+    def test_code_auth(self):
+        redirect_uri = "http://foo.bar/"
+        url = self.axosoft_client.begin_authentication_by_code(
+            redirect_uri
+        )
+        self.assertEquals(
+            url,
+            "https://sublime-axosoft.axosoft.com/auth?scope={0}&redirect_uri={1}&response_type={2}&client_id={3}"
+            .format(
+                "read+write",
+                "http%3A%2F%2Ffoo.bar%2F",
+                "code",
+                self.client_id
+            )
+        )
+        code = "db8f6d59-1a70-49a4-943d-52858646dfb0"
+        token = self.axosoft_client.complete_authenticate_by_code(
+            code,
+            redirect_uri
+        )
+
+        self.assertIsNotNone(token)
+        is_authenticated = self.axosoft_client.is_authenticated()
+        self.assertTrue(is_authenticated)
+        logged_out = self.axosoft_client.log_out()
+        self.assertTrue(logged_out)
+
 
     def test_unauthenticated(self):
         is_authenticated = self.axosoft_client.is_authenticated()

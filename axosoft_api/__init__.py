@@ -6,6 +6,7 @@ Hook up to axosoft
 
 import requests
 import json
+import urllib
 from .validate import validate_address, \
     validate_required_params, \
     validate_response
@@ -73,6 +74,56 @@ class Axosoft(object):
                 assert auth['token_type'] == 'bearer'
                 self.__token = auth['access_token']
                 return self.__token
+
+    def begin_authentication_by_code(self, redirect_uri):
+        """ Return the URL to use when authenticating with the code method. """
+        # TODO python 2/3 urllib
+        payload = {
+            "response_type": "code",
+            "client_id": self.__consumer['client_id'],
+            "redirect_uri": redirect_uri,
+            "scope": "read write"
+        }
+        url = "https://{0}/auth?{1}".format(
+            self.__consumer["domain"],
+            urllib.urlencode(payload)
+        )
+        return url
+
+    def complete_authenticate_by_code(self, code, redirect_uri):
+        """
+        Authenticate.
+
+        Get a new token if one doesn't exist.
+        Otherwise return the existing token.
+        """
+        # TODO write a test to get auth code
+        # TODO test already authenticated
+        authenticated = self.is_authenticated()
+        if authenticated:
+            return self.__token
+        else:
+            uri = '%s/oauth2/token' % self.__base_url
+            payload = {
+                'grant_type': 'authorization_code',
+                'client_id': self.__consumer['client_id'],
+                'client_secret': self.__consumer['client_secret'],
+                'code': code,
+                'redirect_uri': redirect_uri
+            }
+            response = requests.post(uri, payload)
+            success = validate_response(response, 200)
+            if success:
+                auth = response.json()
+                assert auth['token_type'] == 'bearer'
+                self.__token = auth['access_token']
+                return self.__token
+
+    def log_out(self):
+        """ Log out of the API. """
+        # TODO make sure self.__token is defined
+        del self.__token
+        return True
 
     def get(self, address, resourse_id=None, payload=None):
         """ Get a resource. """
