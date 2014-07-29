@@ -90,7 +90,7 @@ For info on using the various resources of the API see Axosoft's documentation:
 http://developer.axosoft.com/api
 
 ##To Do
-- Implement code grant type authentication.
+- ~~Implement code grant type authentication.~~
 - Figure out an elegent way to access a resource's children.
     - e.g. `/features/{id}/emails`
 - Handle binary attachments.
