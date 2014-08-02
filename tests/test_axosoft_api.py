@@ -5,6 +5,9 @@ Tests for the axosoftAPI
 """
 import unittest
 import os
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from six.moves.urllib.parse import urlparse, parse_qs
 from axosoft_api import Axosoft
 
 if os.environ.get('TEST_ENV', 'local') == 'local':
@@ -29,7 +32,7 @@ class TestClientCreation(unittest.TestCase):
         self.assertIsInstance(self.axosoft_client, Axosoft)
 
 
-class TestClientAuthentication(unittest.TestCase):
+class TestClientAuthenticationPassword(unittest.TestCase):
     def setUp(self):
         self.client_id = client_id
         self.client_secret = client_secret
@@ -38,7 +41,7 @@ class TestClientAuthentication(unittest.TestCase):
             'sublime-axosoft.axosoft.com'
         )
 
-    def test_auth(self):
+    def test_password_auth(self):
         token = self.axosoft_client.authenticate_by_password(
             axosoft_user,
             axosoft_password
@@ -46,13 +49,19 @@ class TestClientAuthentication(unittest.TestCase):
         self.assertIsNotNone(token)
         is_authenticated = self.axosoft_client.is_authenticated()
         self.assertTrue(is_authenticated)
+
         second_token = self.axosoft_client.authenticate_by_password(
             axosoft_user,
             axosoft_password
         )
         self.assertIsNotNone(second_token)
+        self.assertTrue(is_authenticated)
+
         r = self.axosoft_client.get('me')
         self.assertEquals(axosoft_user, r['email'])
+
+        logged_out = self.axosoft_client.log_out()
+        self.assertTrue(logged_out)
 
     def test_unauthenticated(self):
         is_authenticated = self.axosoft_client.is_authenticated()
@@ -67,6 +76,72 @@ class TestClientAuthentication(unittest.TestCase):
         )
         is_authenticated = axosoft_client.is_authenticated()
         self.assertFalse(is_authenticated)
+
+
+class TestClientAuthenticationCode(unittest.TestCase):
+    def setUp(self):
+        self.client_id = client_id
+        self.client_secret = client_secret
+        self.axosoft_client = Axosoft(
+            self.client_id, self.client_secret,
+            'sublime-axosoft.axosoft.com'
+        )
+        self.driver = webdriver.Firefox()
+
+    def test_code_auth(self):
+        redirect_uri = "http://foo.bar/"
+        url = self.axosoft_client.begin_authentication_by_code(
+            redirect_uri
+        )
+        res_url = urlparse(url)
+        self.assertEquals("sublime-axosoft.axosoft.com", res_url.netloc)
+        self.assertEquals("https", res_url.scheme)
+        query_string = parse_qs(res_url.query)
+        self.assertEquals(["read write"], query_string["scope"])
+        self.assertEquals([redirect_uri], query_string["redirect_uri"])
+        self.assertEquals(["code"], query_string["response_type"])
+        self.assertEquals([self.client_id], query_string["client_id"])
+
+        driver = self.driver
+        driver.get(url)
+        self.assertEquals("Axosoft", driver.title)
+        driver.find_element_by_name("ctl00$BodyContent$userNameTextbox")\
+            .send_keys(axosoft_user)
+        elem = driver.find_element_by_name("ctl00$BodyContent$passwordTextbox")
+        elem.send_keys(axosoft_password)
+        elem.send_keys(Keys.RETURN)
+        driver.implicitly_wait(10)
+        driver.find_element_by_class_name("saveAndClose").click()
+        end_url = urlparse(driver.current_url)
+        self.assertEquals("foo.bar", end_url.netloc)
+        query_string = parse_qs(end_url.query)
+        code = query_string["code"]
+
+        token = self.axosoft_client.complete_authentication_by_code(
+            code,
+            redirect_uri
+        )
+
+        self.assertIsNotNone(token)
+        is_authenticated = self.axosoft_client.is_authenticated()
+        self.assertTrue(is_authenticated)
+
+        second_token = self.axosoft_client.complete_authentication_by_code(
+            code,
+            redirect_uri
+        )
+        self.assertIsNotNone(second_token)
+        is_authenticated = self.axosoft_client.is_authenticated()
+        self.assertTrue(is_authenticated)
+
+        logged_out = self.axosoft_client.log_out()
+        self.assertTrue(logged_out)
+        is_authenticated = self.axosoft_client.is_authenticated()
+        self.assertFalse(is_authenticated)
+
+    def tearDown(self):
+        self.driver.close()
+
 
 class TestClientMethods(unittest.TestCase):
     def setUp(self):
