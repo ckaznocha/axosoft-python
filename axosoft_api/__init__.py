@@ -89,7 +89,7 @@ class Axosoft(object):
         )
         return url
 
-    def complete_authenticate_by_code(self, code, redirect_uri):
+    def complete_authentication_by_code(self, code, redirect_uri):
         """
         Authenticate.
 

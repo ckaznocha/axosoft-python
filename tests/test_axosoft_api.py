@@ -117,7 +117,7 @@ class TestClientAuthenticationCode(unittest.TestCase):
         query_string = parse_qs(end_url.query)
         code = query_string["code"]
 
-        token = self.axosoft_client.complete_authenticate_by_code(
+        token = self.axosoft_client.complete_authentication_by_code(
             code,
             redirect_uri
         )
@@ -126,7 +126,7 @@ class TestClientAuthenticationCode(unittest.TestCase):
         is_authenticated = self.axosoft_client.is_authenticated()
         self.assertTrue(is_authenticated)
 
-        second_token = self.axosoft_client.complete_authenticate_by_code(
+        second_token = self.axosoft_client.complete_authentication_by_code(
             code,
             redirect_uri
         )

@@ -9,6 +9,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
 
 ## Usage
 1. Import the module into your project
+
     ```python
     from axosoft_api import Axosoft
     ```
@@ -21,6 +22,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
     1. The domain you use to access Axosoft without the protocol.
         i.e. If your domain is `https://foo.axosoft.com` you would use `foo.axosoft.com`
     1. Optionally, a token from a previous session
+
     ```python
     axosoft_client = Axosoft(
             'Your client ID',
@@ -31,21 +33,52 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
 
 1. Authenticate
     
-    The authentication method returns the token so it can be used for future sessions
-    ```python
-        token = axosoft_client.authenticate_by_password(
-            axosoft_user,
-            axosoft_password
+    The authentication methods return the token so it can be used for future sessions
+
+    There are two ways to authenticate
+    1. Username/Password authentication:
+
+        ```python
+            token = axosoft_client.authenticate_by_password(
+                axosoft_user,
+                axosoft_password
+            )
+        ```
+
+    1. Code based authentication:
+ 
+        ```python
+        """
+        Pass the URL to begin_authentication_by_code() where you would like the access code sent
+        """
+        redirect_uri = "http://foo.bar/"
+        url = self.axosoft_client.begin_authentication_by_code(
+            redirect_uri
         )
-    ```
+
+        """
+        Send the user to the url returned by the method.
+
+        Once they have authenticated they will be forwarded to the URL you provided.
+        Exchanged to code for a token by passing the code and the redirect_uri to complete_authentication_by_code().
+        """
+        code = "query_string["code"]"
+
+        token = self.axosoft_client.complete_authentication_by_code(
+            code,
+            redirect_uri
+        )
+        ```
 
     If you need to confirm that you're successfully authenticated, you may use the `is_authenticated` method
+
     ```python
         if axosoft_client.is_authenticated:
             pass
     ````
 
 1. Start interacting with your Axosoft API resources
+
     ```python
         # These examples arbitrarily use the release resource
 
