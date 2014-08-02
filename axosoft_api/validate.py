@@ -29,7 +29,7 @@ def validate_required_params(resource, payload):
     """ Make sure no required params were missed. """
     missed = [
         x for x in resource['required']
-        if x not in payload.keys()
+        if x not in list(payload.keys())
     ]
     if len(missed) > 0:
         missed = ', '.join(missed)
