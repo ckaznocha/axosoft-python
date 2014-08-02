@@ -16,14 +16,14 @@ before_install:
 install:
 - pip install .
 - pip install flake8
-- pip install pylint
+# - pip install pylint
 - pip install pep257
 - pip install coveralls
 - pip install selenium
 script:
 - flake8 ./axosoft_api
 - pep257 ./axosoft_api
-- pylint ./axosoft_api
+# - pylint ./axosoft_api
 - nosetests --verbose --with-coverage --cover-package=axosoft_api
 after_success:
 - coveralls
