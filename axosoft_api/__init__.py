@@ -6,6 +6,7 @@ Hook up to axosoft
 
 import requests
 import json
+# pylint: disable=E0611
 from six.moves.urllib.parse import urlencode
 from .validate import validate_address, \
     validate_required_params, \
