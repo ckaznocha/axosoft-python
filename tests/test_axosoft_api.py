@@ -10,8 +10,7 @@ from selenium.webdriver.common.keys import Keys
 try:
     from urllib.parse import urlparse, parse_qs
 except ImportError:
-    from urllib import urlparse
-    from urlparse import parse_qs
+    from urlparse import urlparse, parse_qs
 from axosoft_api import Axosoft
 
 if os.environ.get('TEST_ENV', 'local') == 'local':
