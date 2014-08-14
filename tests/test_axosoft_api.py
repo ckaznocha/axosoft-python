@@ -12,7 +12,6 @@ try:
 except ImportError:
     from urllib import urlencode
     from urlparse import parse_qs
-from six.moves.urllib.parse import urlparse, parse_qs
 from axosoft_api import Axosoft
 
 if os.environ.get('TEST_ENV', 'local') == 'local':
