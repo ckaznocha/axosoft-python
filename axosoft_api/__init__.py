@@ -51,7 +51,7 @@ class Axosoft(object):
 
         return authenticated
 
-    def authenticate_by_password(self, user, password):
+    def authenticate_by_password(self, user, password, scope="read write"):
         """
         Authenticate.
 
@@ -69,7 +69,7 @@ class Axosoft(object):
                 'client_secret': self.__consumer['client_secret'],
                 'username': user,
                 'password': password,
-                'scope': 'read write'
+                'scope': scope
             }
             response = requests.post(uri, payload)
             success = validate_response(response, 200)
@@ -79,13 +79,13 @@ class Axosoft(object):
                 self.__token = auth['access_token']
                 return self.__token
 
-    def begin_authentication_by_code(self, redirect_uri):
+    def begin_authentication_by_code(self, redirect_uri, scope="read write"):
         """ Return the URL to use when authenticating with the code method. """
         payload = {
             "response_type": "code",
             "client_id": self.__consumer['client_id'],
             "redirect_uri": redirect_uri,
-            "scope": "read write"
+            "scope": scope
         }
         url = "https://{0}/auth?{1}".format(
             self.__consumer["domain"],
