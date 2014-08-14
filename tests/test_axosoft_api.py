@@ -7,6 +7,11 @@ import unittest
 import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+try:
+    from urllib.parse import urlencode, parse_qs
+except ImportError:
+    from urllib import urlencode
+    from urlparse import parse_qs
 from six.moves.urllib.parse import urlparse, parse_qs
 from axosoft_api import Axosoft
 
