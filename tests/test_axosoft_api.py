@@ -7,7 +7,10 @@ import unittest
 import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from six.moves.urllib.parse import urlparse, parse_qs
+try:
+    from urllib.parse import urlparse, parse_qs
+except ImportError:
+    from urlparse import urlparse, parse_qs
 from axosoft_api import Axosoft
 
 if os.environ.get('TEST_ENV', 'local') == 'local':
