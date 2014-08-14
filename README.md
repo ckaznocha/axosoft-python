@@ -15,7 +15,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
     ```
 
 1. Create a new `Axosoft` instance
-    
+
     The constructor accepts 4 arguments
     1. The client ID provided to you by Axosoft
     1. The client secret provide to you by Axosoft
@@ -32,7 +32,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
     ```
 
 1. Authenticate
-    
+
     The authentication methods return the token so it can be used for future sessions
 
     There are two ways to authenticate
@@ -41,19 +41,21 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         ```python
             token = axosoft_client.authenticate_by_password(
                 axosoft_user,
-                axosoft_password
+                axosoft_password,
+                "read write"
             )
         ```
 
     1. Code based authentication:
- 
+
         ```python
         """
         Pass the URL to begin_authentication_by_code() where you would like the access code sent
         """
         redirect_uri = "http://foo.bar/"
         url = self.axosoft_client.begin_authentication_by_code(
-            redirect_uri
+            redirect_uri,
+            "read write"
         )
 
         """
@@ -89,7 +91,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         The second argument is the payload which should be a dictionary containing at minimum the required fields for the resource type
         """
         r = axosoft_client.create('releases', payload={'name': 'testRelease', 'release_type': {'id': 1}})
-        
+
         """
         Get the content of a release
 
@@ -98,7 +100,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         The third argument is optionally a dictionary of parameters
         """
         r = axosoft_client.get('releases', r['id'])
-        
+
         """
         Update a release
 
@@ -107,7 +109,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         The third arguments is a dictionary containing all the fields of your resource
         """
         r = axosoft_client.update('releases', r['id'], payload={'name': 'testRelease', 'release_type': {'id': 1}})
-        
+
         """
         Delete a release
 
