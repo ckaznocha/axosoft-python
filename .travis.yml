@@ -17,5 +17,3 @@ install:
 - travis_retry pip install tox
 script:
 - travis_retry tox
-after_success:
-- travis_retry coveralls
