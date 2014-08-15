@@ -7,15 +7,15 @@ env:
   - secure: Oihhvk59MkpxC9YedtlpQ3oczNbA1KDvF8tW0Ny5ZLyvJ4CThw7ORs5FarA3DIXJclF2CO78s049v2/R3Ege0N3DZro5aIuEIxhisQbwQF24s9ZE9A+4NWHUn/Re3+oy7MS2dC+X2tohpB1LBkxK2+epI+5h+6aDDVWtFQQ5rzg=
   - secure: E9IRnePrOmxLZDDU06cHyaJm/uiWdzeXESMbqv1fAS16GeaXAhRb5BlAHKmPdnwQqLRkzTH5nD66RwiWyGq3RnjPfSoX26ym/SY/nz9AQtrp3jyQ20hBkv+ZNDxJlabQgD6qAewy8qLEvL1byh5Ea31FoIuiCheLh1qzkW1CBLI=
   matrix:
-  - TOX_ENV=py34
-  - TOX_ENV=py33
-  - TOX_ENV=py32
-  - TOX_ENV=py27
-  - TOX_ENV=pep257
-  - TOX_ENV=flake8
+  - TOXENV=py34
+  - TOXENV=py33
+  - TOXENV=py32
+  - TOXENV=py27
+  - TOXENV=pep257
+  - TOXENV=flake8
 install:
 - travis_retry pip install tox
 script:
-- travis_retry tox -e $TOX_ENV
+- travis_retry tox
 after_success:
 - travis_retry coveralls
