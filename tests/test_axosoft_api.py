@@ -61,7 +61,7 @@ class TestClientAuthenticationPassword(unittest.TestCase):
         self.assertTrue(is_authenticated)
 
         r = self.axosoft_client.get('me')
-        self.assertEquals(axosoft_user, r['email'])
+        self.assertEquals(axosoft_user, r['data']['email'])
 
         logged_out = self.axosoft_client.log_out()
         self.assertTrue(logged_out)
@@ -165,22 +165,22 @@ class TestClientMethods(unittest.TestCase):
 
     def test_get_resourse(self):
         r = self.axosoft_client.get('me')
-        self.assertEquals(axosoft_user, r['email'])
+        self.assertEquals(axosoft_user, r['data']['email'])
 
     def test_resourse_create(self):
         r = self.axosoft_client.create('releases', payload={'name': 'testRelease', 'release_type': {'id': 1}})
-        self.assertEquals(int, type(r['id']))
+        self.assertEquals(int, type(r['data']['id']))
         self.assertRaises(ValueError, self.axosoft_client.create, 'releases', {})
 
     def test_resourse_update(self):
         r = self.axosoft_client.create('releases', payload={'name': 'testRelease', 'release_type': {'id': 1}})
-        r = self.axosoft_client.get('releases', r['id'])
+        r = self.axosoft_client.get('releases', r['data']['id'])
         self.assertEquals(r['name'], 'testRelease')
-        r = self.axosoft_client.update('releases', r['id'], payload={'name': 'testRelease', 'release_type': {'id': 1}})
-        self.assertEquals(int, type(r['id']))
+        r = self.axosoft_client.update('releases', r['data']['id'], payload={'name': 'testRelease', 'release_type': {'id': 1}})
+        self.assertEquals(int, type(r['data']['id']))
         self.assertRaises(ValueError, self.axosoft_client.update, 'releases', '', {})
 
     def test_resourse_delete(self):
         r = self.axosoft_client.create('releases', payload={'name': 'testRelease', 'release_type': {'id': 1}})
-        r = self.axosoft_client.delete('releases', r['id'])
+        r = self.axosoft_client.delete('releases', r['data']['id'])
         self.assertTrue(r)
