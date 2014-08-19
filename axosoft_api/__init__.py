@@ -150,7 +150,7 @@ class Axosoft(object):
 
         response = response.json()
 
-        return response["data"]
+        return response
 
     def create(self, address, payload):
         """ Create a resource. """
@@ -177,7 +177,7 @@ class Axosoft(object):
         validate_response(response, 201)
 
         data = response.json()
-        return data['data']
+        return data
 
     def update(self, address, resourse_id, payload):
         """ Update a resource. """
@@ -203,7 +203,7 @@ class Axosoft(object):
         validate_response(response, 200)
 
         data = response.json()
-        return data['data']
+        return data
 
     def delete(self, address, resourse_id):
         """ Delete a resource. """
