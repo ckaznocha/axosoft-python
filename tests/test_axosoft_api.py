@@ -175,7 +175,7 @@ class TestClientMethods(unittest.TestCase):
     def test_resourse_update(self):
         r = self.axosoft_client.create('releases', payload={'name': 'testRelease', 'release_type': {'id': 1}})
         r = self.axosoft_client.get('releases', r['data']['id'])
-        self.assertEquals(r['name'], 'testRelease')
+        self.assertEquals(r['data']['name'], 'testRelease')
         r = self.axosoft_client.update('releases', r['data']['id'], payload={'name': 'testRelease', 'release_type': {'id': 1}})
         self.assertEquals(int, type(r['data']['id']))
         self.assertRaises(ValueError, self.axosoft_client.update, 'releases', '', {})
