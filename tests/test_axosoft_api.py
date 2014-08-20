@@ -14,7 +14,7 @@ except ImportError:
     from urlparse import urlparse, parse_qs
 from axosoft_api import Axosoft
 
-if os.environ.get('TEST_ENV', 'local') == 'local':
+if os.environ.get('TRAVIS', False) is True:
     import axosoft_credentials
 
 client_id = os.environ.get('CLIENT_ID')
