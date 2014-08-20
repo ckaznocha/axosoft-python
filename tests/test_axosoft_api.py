@@ -7,13 +7,14 @@ import unittest
 import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from xvfbwrapper import Xvfb
 try:
     from urllib.parse import urlparse, parse_qs
 except ImportError:
     from urlparse import urlparse, parse_qs
 from axosoft_api import Axosoft
 
-if os.environ.get('TEST_ENV', 'local') == 'local':
+if os.environ.get('TRAVIS', False) is True:
     import axosoft_credentials
 
 client_id = os.environ.get('CLIENT_ID')
@@ -89,6 +90,8 @@ class TestClientAuthenticationCode(unittest.TestCase):
             self.client_id, self.client_secret,
             'sublime-axosoft.axosoft.com'
         )
+        self.xvfb = Xvfb(width=1280, height=720)
+        self.xvfb.start()
         self.driver = webdriver.Firefox()
 
     def test_code_auth(self):
@@ -144,6 +147,7 @@ class TestClientAuthenticationCode(unittest.TestCase):
 
     def tearDown(self):
         self.driver.close()
+        self.xvfb.stop
 
 
 class TestClientMethods(unittest.TestCase):
