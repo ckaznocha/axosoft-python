@@ -48,4 +48,7 @@ def validate_response(response, expected_code):
         return True
     else:
         data = response.json()
-        raise ValueError(data['error_description'])
+        if 'error_description' in data:
+          raise ValueError(data['error_description'])
+        else:
+          raise ValueError(data)
