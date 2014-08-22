@@ -49,7 +49,12 @@ RESOURCES = {
         "verbs": ["GET"],
         "required": []
     },
-    "itme_relations": {
+    "fields/custom": {
+        "address": "fields/custom",
+        "verbs": ["GET"],
+        "required": []
+    },
+    "item_relations": {
         "address": "item_relations",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["relation_type", "parent_item", "child_item"]

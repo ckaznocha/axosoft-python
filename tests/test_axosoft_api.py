@@ -14,7 +14,7 @@ except ImportError:
     from urlparse import urlparse, parse_qs
 from axosoft_api import Axosoft
 
-if os.environ.get('TRAVIS', False) is True:
+if os.environ.get('TRAVIS', False) is False:
     import axosoft_credentials
 
 client_id = os.environ.get('CLIENT_ID')
@@ -81,6 +81,19 @@ class TestClientAuthenticationPassword(unittest.TestCase):
         is_authenticated = axosoft_client.is_authenticated()
         self.assertFalse(is_authenticated)
 
+    def test_bad_auth_secret(self):
+        axosoft_client = Axosoft(
+            self.client_id,
+            'foo',
+            'sublime-axosoft.axosoft.com',
+            '3et4ae1a-7025-45gt-84a3-a1391ts9a376'
+        )
+        self.assertRaises(
+            ValueError,
+            axosoft_client.authenticate_by_password,
+            axosoft_user,
+            axosoft_password
+        )
 
 class TestClientAuthenticationCode(unittest.TestCase):
     def setUp(self):
