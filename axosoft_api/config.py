@@ -29,6 +29,11 @@ RESOURCES = {
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["item"]
     },
+    "filters": {
+        "address": "filters",
+        "verbs": ["GET"],
+        "required": []
+    },
     "tasks": {
         "address": "tasks",
         "verbs": ["GET", "POST", "DELETE"],
