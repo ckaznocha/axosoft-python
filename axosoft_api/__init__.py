@@ -11,12 +11,11 @@ try:
     from urllib.parse import urlencode
 except ImportError:
     from urllib import urlencode
-    from sets import Set
 from .validate import validate_address, \
     validate_required_params, \
     validate_response
 
-SUPPORTED_API_VERSIONS = Set([3, 4])
+SUPPORTED_API_VERSIONS = set([3, 4])
 DEFAULT_API_VERSION = 4
 
 
