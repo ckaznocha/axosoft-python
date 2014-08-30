@@ -44,11 +44,11 @@ def validate_response(response, expected_code):
     valid_response = (
         response.headers['content-type'] == 'application/json; charset=utf-8'
     )
+    data = response.json()
+
     if success & valid_response:
         return True
+    elif 'error_description' in data:
+        raise ValueError(data['error_description'])
     else:
-        data = response.json()
-        if 'error_description' in data:
-          raise ValueError(data['error_description'])
-        else:
-          raise ValueError(data)
+        raise ValueError(data)
