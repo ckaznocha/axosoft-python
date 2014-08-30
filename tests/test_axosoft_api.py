@@ -36,6 +36,28 @@ class TestClientCreation(unittest.TestCase):
         self.assertIsInstance(self.axosoft_client, Axosoft)
 
 
+class TestChangeAPIVersion(unittest.TestCase):
+    def setUp(self):
+        self.client_id = client_id
+        self.client_secret = client_secret
+        self.axosoft_client = Axosoft(
+            self.client_id, self.client_secret,
+            'sublime-axosoft.axosoft.com'
+        )
+
+    def test_valid_api_version(self):
+        try:
+            self.axosoft_client.set_api_version(3)
+        except LookupError:
+            self.fail("set_api_version() raised LookupError unexpectedly!")
+
+    def test_invalid_api_version(self):
+        self.assertRaises(
+            LookupError,
+            self.axosoft_client.set_api_version,
+            2
+        )
+
 class TestClientAuthenticationPassword(unittest.TestCase):
     def setUp(self):
         self.client_id = client_id
