@@ -16,3 +16,12 @@ install:
 - travis_retry pip install tox
 script:
 - travis_retry tox
+deploy:
+  provider: pypi
+  user: ckaznocha
+  password:
+    secure: Wz7oufpB43HUAi/DXsJRVcIOUfBkLy7jZzE7+G/xRTKq+mQ3pTMTJ186Vj1EXEUfkXYpi86YAIcevzCFTi1Hrgp8pKme/6Xe+n6nArdChplVnxx6jr54sizaBPppXaejr/VuXvN0tCKl8AninHcmFlzwzRbzMJFoA8H/H6+PgoY=
+  on:
+    tags: true
+    repo: ckaznocha/axosoft-python
+    branch: master

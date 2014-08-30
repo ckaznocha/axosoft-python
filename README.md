@@ -4,7 +4,6 @@ axosoft-python
 [![Coverage Status](https://img.shields.io/coveralls/ckaznocha/axosoft-python.svg)](https://coveralls.io/r/ckaznocha/axosoft-python?branch=master)
 [![Code Health](https://landscape.io/github/ckaznocha/axosoft-python/master/landscape.png)](https://landscape.io/github/ckaznocha/axosoft-python/master)
 [![Stories in Ready](https://badge.waffle.io/ckaznocha/axosoft-python.svg?label=ready&title=stories+ready)](http://waffle.io/ckaznocha/axosoft-python)
-[![Stories in Progress](https://badge.waffle.io/ckaznocha/axosoft-python.svg?label=in+progress&title=stories+in+progress)](http://waffle.io/ckaznocha/axosoft-python)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://ckaznocha.mit-license.org)
 
 An unofficial Python module for the Axosoft (formerly OnTime) API.
@@ -66,7 +65,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         Once they have authenticated they will be forwarded to the URL you provided.
         Exchanged to code for a token by passing the code and the redirect_uri to complete_authentication_by_code().
         """
-        code = "query_string["code"]"
+        code = code_from_redirect_url
 
         token = self.axosoft_client.complete_authentication_by_code(
             code,
@@ -101,7 +100,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         The second argument is optionally the ID of a specific resource
         The third argument is optionally a dictionary of parameters
         """
-        r = axosoft_client.get('releases', r['id'])
+        r = axosoft_client.get('releases', r['data']['id'])
 
         """
         Update a release
@@ -110,7 +109,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         The second argument is the ID of the resource you are updating
         The third arguments is a dictionary containing all the fields of your resource
         """
-        r = axosoft_client.update('releases', r['id'], payload={'name': 'testRelease', 'release_type': {'id': 1}})
+        r = axosoft_client.update('releases', r['data']['id'], payload={'name': 'testRelease', 'release_type': {'id': 1}})
 
         """
         Delete a release
@@ -119,7 +118,7 @@ An unofficial Python module for the Axosoft (formerly OnTime) API.
         The second argument is the ID of the resource you want to delete
         Returns true if the delete was successful
         """
-        r = self.axosoft_client.delete('releases', r['id'])
+        r = self.axosoft_client.delete('releases', r['data']['id'])
 
     ````
 
