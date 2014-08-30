@@ -11,7 +11,7 @@ setup(
     author="Clifton Kaznocha",
     author_email="clifton@kaznocha.com",
     url="http://github.com/ckaznocha/axosoft-python",
-    download_url='http://github.com/ckaznocha/axosoft-python/tarball/0.1',
+    download_url='http://github.com/ckaznocha/axosoft-python/tarball/0.1.0',
     packages=find_packages(),
     keywords=["Axosoft", "scrum", "api", "ontime"],
 )
