@@ -28,7 +28,7 @@ class Axosoft(object):
             "domain": domain
         }
         self.__token = token
-        self.__api_version = '3'
+        self.__api_version = '4'
         self.__api_path = 'api'
         self.__base_url = 'https://{0}/{1}'\
             .format(
