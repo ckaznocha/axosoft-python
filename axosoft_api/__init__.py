@@ -14,6 +14,10 @@ except ImportError:
 from .validate import validate_address, \
     validate_required_params, \
     validate_response
+from sets import Set
+
+SUPPORTED_API_VERSIONS = Set([3, 4])
+DEFAULT_API_VERSION = 4
 
 
 class Axosoft(object):
@@ -28,7 +32,7 @@ class Axosoft(object):
             "domain": domain
         }
         self.__token = token
-        self.__api_version = '4'
+        self.__api_version = str(DEFAULT_API_VERSION)
         self.__api_path = 'api'
         self.__base_url = 'https://{0}/{1}'\
             .format(
@@ -36,6 +40,20 @@ class Axosoft(object):
                 self.__api_path
             )
         self.__content_type = 'application/x-www-form-urlencoded;charset=utf-8'
+
+    def set_api_version(self, api_version):
+        """
+        Set API Version.
+
+        If default API version is not sufficient it may be changed.
+        """
+        if api_version in SUPPORTED_API_VERSIONS:
+            self.__api_version = str(DEFAULT_API_VERSION)
+        else:
+            raise LookupError(
+                'The version of the Axosoft API you are trying \
+                to use is not supported'
+            )
 
     def is_authenticated(self):
         """ Test if there is a valid token."""
