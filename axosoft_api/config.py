@@ -7,7 +7,8 @@ Contains available address info.
 RESOURCES = {
     "attachments": {
         "address": "attachments",
-        "verbs": ["GET", "POST", "DELETE"]
+        "verbs": ["GET", "POST", "DELETE"],
+        "resources": ["data"]
     },
     "contacts": {
         "address": "contacts",
@@ -22,12 +23,14 @@ RESOURCES = {
     "defects": {
         "address": "defects",
         "verbs": ["GET", "POST", "DELETE"],
-        "required": ["item"]
+        "required": ["item"],
+        "resources": ["attachments", "comments", "emails", "notifications"]
     },
     "features": {
         "address": "features",
         "verbs": ["GET", "POST", "DELETE"],
-        "required": ["item"]
+        "required": ["item"],
+        "resources": ["attachments", "comments", "emails", "notifications"]
     },
     "filters": {
         "address": "filters",
@@ -37,17 +40,20 @@ RESOURCES = {
     "tasks": {
         "address": "tasks",
         "verbs": ["GET", "POST", "DELETE"],
-        "required": ["item"]
+        "required": ["item"],
+        "resources": ["attachments", "comments", "emails", "notifications"]
     },
     "incidents": {
         "address": "incidents",
         "verbs": ["GET", "POST", "DELETE"],
-        "required": ["item"]
+        "required": ["item"],
+        "resources": ["attachments", "comments", "emails", "notifications"]
     },
     "emails": {
         "address": "email",
         "verbs": ["GET", "POST", "DELETE"],
-        "required": ["subject", "body", "to", "from", "email_type", "item"]
+        "required": ["subject", "body", "to", "from", "email_type", "item"],
+        "resources": ["attachments"]
     },
     "fields": {
         "address": "fields",
@@ -77,7 +83,8 @@ RESOURCES = {
     "projects": {
         "address": "projects",
         "verbs": ["GET", "POST", "DELETE"],
-        "required": ["name"]
+        "required": ["name"],
+        "resources": ["attachments", "workflow"]
     },
     "releases": {
         "address": "releases",

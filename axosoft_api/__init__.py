@@ -142,9 +142,9 @@ class Axosoft(object):
         self.__token = None
         return True
 
-    def get(self, address, resourse_id=None, payload=None):
+    def get(self, address, resourse_id=None, payload=None, element=None):
         """ Get a resource. """
-        resource = validate_address(address, 'GET')
+        resource = validate_address(address, 'GET', element)
         uri = '{0}/v{1}/{2}'\
             .format(
                 self.__base_url,
@@ -154,6 +154,11 @@ class Axosoft(object):
 
         if resourse_id is not None:
             uri = '{0}/{1}'.format(uri, resourse_id)
+        else:
+            pass
+
+        if element is not None:
+            uri = '{0}/{1}'.format(uri, element)
         else:
             pass
 
@@ -169,11 +174,9 @@ class Axosoft(object):
 
         return response
 
-    def create(self, address, payload):
+    def create(self, address, payload, resource_id=None, element=None):
         """ Create a resource. """
-        resource = validate_address(address, 'POST')
-
-        validate_required_params(resource, payload)
+        resource = validate_address(address, 'POST', element)
 
         uri = '{0}/v{1}/{2}'\
             .format(
@@ -181,6 +184,12 @@ class Axosoft(object):
                 self.__api_version,
                 resource['address']
             )
+
+        if element is None:
+            validate_required_params(resource, payload)
+        else:
+            uri = '{0}/{1}/{2}'.format(uri, resource_id, element)
+
         headers = {
             'Content-type': 'application/json; charset=utf-8',
             'Authorization': 'Bearer ' + self.__token
@@ -207,6 +216,7 @@ class Axosoft(object):
                 resource['address'],
                 resourse_id
             )
+
         headers = {
             'Content-type': 'application/json; charset=utf-8',
             'Authorization': 'Bearer ' + self.__token

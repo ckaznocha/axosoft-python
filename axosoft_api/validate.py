@@ -6,7 +6,7 @@ Some functions to validate methods.
 from .config import RESOURCES
 
 
-def validate_address(address, verb):
+def validate_address(address, verb, sub_resource=None):
     """ Test if address is valid. """
     address_available = (address in RESOURCES)
 
@@ -21,6 +21,18 @@ def validate_address(address, verb):
         pass
     else:
         raise LookupError('Verb not valid')
+
+    if sub_resource is not None:
+
+        if 'resources' in resource:
+            sub_resource_available = (sub_resource in resource['resources'])
+        else:
+            sub_resource_available = False
+
+        if sub_resource_available:
+            pass
+        else:
+            raise LookupError('Resource not valid')
 
     return resource
 
