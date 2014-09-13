@@ -127,8 +127,8 @@ http://developer.axosoft.com/api
 
 ##To Do
 - ~~Implement code grant type authentication.~~
-- Figure out an elegent way to access a resource's children.
-    - e.g. `/features/{id}/emails`
+- ~~Figure out an elegent way to access a resource's children.~~
+    - ~~e.g. `/features/{id}/emails`~~
 - Handle binary attachments.
 
 ##Contributing
