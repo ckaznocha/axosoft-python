@@ -201,15 +201,25 @@ class TestClientMethods(unittest.TestCase):
     def test_invalid_endpoint(self):
         self.assertRaises(LookupError, self.axosoft_client.get, 'foo')
         self.assertRaises(LookupError, self.axosoft_client.update, 'me', '3', {})
+        self.assertRaises(LookupError, self.axosoft_client.get, 'features', '3', {}, 'foo')
+        self.assertRaises(LookupError, self.axosoft_client.get, 'me', element='foo')
+
 
     def test_get_resourse(self):
         r = self.axosoft_client.get('me')
         self.assertEquals(axosoft_user, r['data']['email'])
+        r = self.axosoft_client.get('features', '5', element='emails')
+        self.assertEquals('test', r['data'][0]['body'])
+
 
     def test_resourse_create(self):
         r = self.axosoft_client.create('releases', payload={'name': 'testRelease', 'release_type': {'id': 1}})
         self.assertEquals(int, type(r['data']['id']))
         self.assertRaises(ValueError, self.axosoft_client.create, 'releases', {})
+        r = self.axosoft_client.create('releases', payload={'name': 'testRelease', 'release_type': {'id': 1}})
+        self.assertEquals(int, type(r['data']['id']))
+        r = self.axosoft_client.create('features', {'user_ids': [1]}, '5', 'notifications')
+        self.assertEquals(int, type(r['data']['id']))
 
     def test_resourse_update(self):
         r = self.axosoft_client.create('releases', payload={'name': 'testRelease', 'release_type': {'id': 1}})
