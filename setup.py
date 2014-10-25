@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="axosoft_api",
-    version="0.2.0",
+    version="0.2.1",
     description="An Axosoft API Client",
     license="MIT",
     install_requires=["requests"],

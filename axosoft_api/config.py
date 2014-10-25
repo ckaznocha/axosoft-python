@@ -50,7 +50,7 @@ RESOURCES = {
         "resources": ["attachments", "comments", "emails", "notifications"]
     },
     "emails": {
-        "address": "email",
+        "address": "emails",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["subject", "body", "to", "from", "email_type", "item"],
         "resources": ["attachments"]
