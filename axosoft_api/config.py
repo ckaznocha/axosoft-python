@@ -45,7 +45,7 @@ RESOURCES = {
         "required": ["item"]
     },
     "emails": {
-        "address": "email",
+        "address": "emails",
         "verbs": ["GET", "POST", "DELETE"],
         "required": ["subject", "body", "to", "from", "email_type", "item"]
     },
