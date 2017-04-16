@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/ckaznocha/axosoft-python.png?label=ready&title=Ready)](https://waffle.io/ckaznocha/axosoft-python)
 axosoft-python
 ================================
 [![Build Status](https://travis-ci.org/ckaznocha/axosoft-python.svg?branch=master)](https://travis-ci.org/ckaznocha/axosoft-python)
