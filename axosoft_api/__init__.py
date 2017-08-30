@@ -14,6 +14,7 @@ except ImportError:
 from .validate import validate_address, \
     validate_required_params, \
     validate_response
+import urllib
 
 SUPPORTED_API_VERSIONS = set([3, 4, 5])
 DEFAULT_API_VERSION = 5
@@ -250,3 +251,42 @@ class Axosoft(object):
 
         success = validate_response(response, 200)
         return success
+
+    def upload(self, payload, resource_id, address="defects", element="attachments", file_name=None, description=None):
+        """ Upload a new attachment """
+        resource = validate_address(address, 'POST', element)
+
+        uri = '{0}/v{1}/{2}'\
+            .format(
+                self.__base_url,
+                self.__api_version,
+                resource['address']
+            )
+
+        if element is None:
+            validate_required_params(resource, payload)
+        else:
+            uri = '{0}/{1}/{2}'.format(uri, resource_id, element)
+
+        qp = {}
+        if file_name is not None:
+            qp["file_name"] = file_name
+        if description is not None:
+            qp["description"] = description
+        if len(qp) > 0:
+            uri = "%s?%s" % (uri, urllib.parse.urlencode(qp))
+
+        headers = {
+            'Content-type': 'application/octet-stream',
+            'Authorization': 'Bearer ' + self.__token
+        }
+        response = requests.post(
+            uri,
+            data=payload,
+            headers=headers
+        )
+
+        validate_response(response, 200)
+
+        data = response.json()
+        return data
