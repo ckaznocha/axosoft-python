@@ -16,8 +16,8 @@ from .validate import validate_address, \
     validate_response
 import urllib
 
-SUPPORTED_API_VERSIONS = set([3, 4, 5])
-DEFAULT_API_VERSION = 5
+SUPPORTED_API_VERSIONS = set([3, 4, 5, 6])
+DEFAULT_API_VERSION = 6
 
 
 class Axosoft(object):
