@@ -15,8 +15,8 @@ from .validate import validate_address, \
     validate_required_params, \
     validate_response
 
-SUPPORTED_API_VERSIONS = set([3, 4])
-DEFAULT_API_VERSION = 4
+SUPPORTED_API_VERSIONS = set([3, 4, 5])
+DEFAULT_API_VERSION = 5
 
 
 class Axosoft(object):
