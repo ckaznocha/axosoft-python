@@ -170,8 +170,10 @@ class Axosoft(object):
         )
 
         validate_response(response, 200)
-
-        response = response.json()
+        if response.headers["content-type"] == "application/octet-stream":
+            response = response.content
+        else:
+            response = response.json()
 
         return response
 
